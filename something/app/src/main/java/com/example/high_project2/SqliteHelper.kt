@@ -26,7 +26,7 @@ class SqliteHelper(context: Context,name: String, version:Int):SQLiteOpenHelper(
         val select="select * from data"
         val rd=readableDatabase
 //ERR
-        val cursor=rd.rawQuery(select,null)
+        val cursor=rd.rawQuery(select,null)     //->여기서 에러 생기면 두번중 두번은 파일 문제였음 / DB 파일 싹삭제하고 다시 넣어보고, asset에 DB이름에 확장자 빼고 다시 넣어보기
 
         while(cursor.moveToNext()){
             val no=cursor.getLong(cursor.getColumnIndex("no"))

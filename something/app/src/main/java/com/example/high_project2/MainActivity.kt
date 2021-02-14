@@ -3,9 +3,8 @@ package com.example.high_project2
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
-import android.webkit.WebViewClient
+import android.webkit.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.high_project2.databinding.ActivityMainBinding
@@ -22,44 +21,48 @@ class MainActivity : AppCompatActivity() {
         binding.webView.setWebChromeClient(object: WebChromeClient(){})
         binding.webView.setWebViewClient(object: WebViewClient(){})
 
-        //asset db파일 불러오기
+
+        //asset파일 복사
         val adb=AssetDatabaseOpenHelper(this)
         adb.openDatabase()
 
-        //DB파일에서 list가져오기
-        val helper=SqliteHelper(this,"data",1)
+        val sqliteHelper=SqliteHelper(this,"data",1)
+
+        var data=sqliteHelper.selectData()
+
+        binding.webView.addJavascriptInterface(WebAppInterface(this,data), "Android")
+        //Log.d("checkfor",data[0].name)
 
 
-        var data=helper.selectData()
-        Log.d("checkfor",data[0].name)
+        //테스트용
+//        val cl=WebAppInterface(this,data)
+//        cl.sendData("신문지")
 
-
-
-
-
-
-
-
-        //원하는 데이터 전달
-
-
+        //null에 toString하면 "null"이 나오나 ""이 나오나 ->null이 나오네
+//        var nu:String?=null
+//        Log.d("checkfor",nu.toString()+"hello")
 
 
     }
+
+}
+
+class WebAppInterface(private val context: Context,val list: MutableList<Data>){
+
     //안드로이드->웹뷰 데이터 전달
     @JavascriptInterface
-    fun sendData(item:String){
+    fun sendData(name:String){
+        //데이터 검색
+        for(i in 0..list.size-1){
+            if(name==list[i].name){
+                Log.d("checkfor","${list[i].toString()}")
+                //binding.webView.loadUrl("javascript:~~~~('"+list[i].name+":"+list[i].category+":"+list[i].category2+"')")
+                break
+            }
 
+        }
 
-        var msg:String //->item에 해당하는 항목 데이터 할당
-        //binding.webView.loadUrl("javascript:~~~~('"+msg+"')")
     }
 
-    //웹뷰 데이터 요청 받기
-    @JavascriptInterface
-    fun recieveData(item:String){
-        sendData(item)
-    }
 
-    //아이템검사
 }
