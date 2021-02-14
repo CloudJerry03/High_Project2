@@ -12,7 +12,7 @@ class AssetDatabaseOpenHelper(private val context: Context) {
 
     companion object {
 
-        private val DB_NAME = "data.db"
+        private val DB_NAME = "data"
 
     }
 
