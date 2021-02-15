@@ -49,11 +49,11 @@ class WebAppInterface(private val context: Context,val list: MutableList<Data>){
         for(i in 0..list.size-1){
             if(name==list[i].name){
                 msg="${list[i].name}:${list[i].category}:${list[i].category2}"
-                Toast.makeText(context, msg , Toast.LENGTH_SHORT).show()
-                return "리턴값"
+
+                return msg
             }
 
         }
-        return "null"
+        return "리턴값이 없어요 이양반야"
     }
 }

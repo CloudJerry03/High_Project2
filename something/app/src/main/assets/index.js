@@ -6,9 +6,11 @@ function clickBtn()
     e.innerHTML="SUCCESS";
 
     var inp = document.getElementById('name').value;
-    document.getElementById("result").innerText = "완료했습니다";
+//    document.getElementById("result").innerText = "완료했습니다";
 
-    Android.sendData(inp);
+    var result = Android.sendData(inp);
+
+    document.getElementById("result").innerText = result;
  }
 
 //입력할 때마다 실행되는 거
