@@ -59,12 +59,10 @@ class WebAppInterface(private val context: Context,val list: MutableList<Data>,v
                 Log.d("checkfor","${list[i].toString()}")
                 msg="${list[i].name}:${list[i].category}:${list[i].category2}"
                 binding.webView.loadUrl("javascript:~~~~('"+msg+"')")
+                Toast.makeText(context, msg , Toast.LENGTH_SHORT).show()
                 break
             }
 
         }
-
     }
-
-
 }
