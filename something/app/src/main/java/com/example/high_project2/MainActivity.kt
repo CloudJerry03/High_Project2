@@ -50,10 +50,10 @@ class WebAppInterface(private val context: Context,val list: MutableList<Data>){
             if(name==list[i].name){
                 msg="${list[i].name}:${list[i].category}:${list[i].category2}"
                 Toast.makeText(context, msg , Toast.LENGTH_SHORT).show()
-                break
+                return "리턴값"
             }
 
         }
-        return "리턴값!"
+        return "null"
     }
 }
