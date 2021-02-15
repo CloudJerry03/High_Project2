@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+
+<body>
+<div class="main_logo">
+    <!-- 타이틀 -->
+    <div class="logo_title">
+        <img src="./images/long logo.png">
+    </div>
+    <!-- navbar -->
+    <div class="menu_bar">
+        <div class="menu_content">
+            SEARCH
+        </div>
+        <div class="menu_content">
+            SOME
+        </div>
+        <div class="menu_content">
+            Q&A
+        </div>
+    </div>
+</div>
+
+<!-- search bar -->
+<div class="search_bar">
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <!-- input box -->
+            <input  type="text" class="form-control input-lg" id="name"
+                    onkeyup='search_key()' placeholder="SEARCH" />
+            <!-- but -->
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button" onclick="clickBtn()">
+                    <img src="./images/search_icon.png">
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div id="aa"></div>
+<div id='result'></div>
+</body>
+
+</html>
