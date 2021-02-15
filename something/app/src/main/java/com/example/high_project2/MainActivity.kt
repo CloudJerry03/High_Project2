@@ -30,40 +30,30 @@ class MainActivity : AppCompatActivity() {
 
         var data=sqliteHelper.selectData()
 
-        binding.webView.addJavascriptInterface(WebAppInterface(this,data,binding), "Android")
+        binding.webView.addJavascriptInterface(WebAppInterface(this,data), "Android")
         //Log.d("checkfor",data[0].name)
 
-
-        //테스트용
-//        val cl=WebAppInterface(this,data,binding)
-//        cl.sendData("신문지")
-
-        //null에 toString하면 "null"이 나오나 ""이 나오나 ->null이 나오네
-//        var nu:String?=null
-//        Log.d("checkfor",nu.toString()+"hello")
 
     }
 
 }
 
-class WebAppInterface(private val context: Context,val list: MutableList<Data>,val binding: ActivityMainBinding){
-    //private lateinit var binding:ActivityMainBinding
+class WebAppInterface(private val context: Context,val list: MutableList<Data>){
+
     //안드로이드->웹뷰 데이터 전달
     @JavascriptInterface
-    fun sendData(name:String){
+    fun sendData(name:String):String{
         Log.d("checkfor",name)
         var msg:String
         //데이터 검색
         for(i in 0..list.size-1){
             if(name==list[i].name){
-                Log.d("checkfor","${list[i].toString()}")
                 msg="${list[i].name}:${list[i].category}:${list[i].category2}"
-                //binding.webView.loadUrl("javascript:~~~~('"+msg+"')")
-                Log.d("checkfor",msg)
                 Toast.makeText(context, msg , Toast.LENGTH_SHORT).show()
                 break
             }
 
         }
+        return "리턴값!"
     }
 }
