@@ -51,14 +51,15 @@ class WebAppInterface(private val context: Context,val list: MutableList<Data>,v
     //안드로이드->웹뷰 데이터 전달
     @JavascriptInterface
     fun sendData(name:String){
-
+        Log.d("checkfor",name)
         var msg:String
         //데이터 검색
         for(i in 0..list.size-1){
             if(name==list[i].name){
                 Log.d("checkfor","${list[i].toString()}")
                 msg="${list[i].name}:${list[i].category}:${list[i].category2}"
-                binding.webView.loadUrl("javascript:~~~~('"+msg+"')")
+                //binding.webView.loadUrl("javascript:~~~~('"+msg+"')")
+                Log.d("checkfor",msg)
                 Toast.makeText(context, msg , Toast.LENGTH_SHORT).show()
                 break
             }
